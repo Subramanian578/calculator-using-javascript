@@ -1,107 +1,138 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Calculator</title>
+    <title>Styled Calculator</title>
     <style>
-        *{
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    box-sizing: border-box;
+                body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-image: linear-gradient(to left, rgba(8, 85, 43, 0), rgb(0, 255, 115));
+        }
+
+        .calculator {
+            background: #3a4452;
+             padding: 20px;
+            border-radius: 30px;
+             font-size: 20px;
+             text-align: right;
+             
+            }
+
+        input {
+            border: 0;
+             outline: 0;
+            width: 200px;
+            height: 60px;
+            border-radius: 10px;
+            box-shadow: -8px -8px 15px rgb(255, 255, 255, 0.1),  5px 5px 15px rgba(83, 61, 61, 0.2);
+            background: transparent ;
+            font-size: 20px;
+            color: rgb(235, 240, 245);
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .display{
+        display: flex;
+        justify-content: flex-end;
+        margin: 20px 0;
+        }
+
+        .display button{
+        padding: 10px;
+         width: 300px;
+        text-align: right;
+        flex: 1;
+        font-size: 45px;
+        box-shadow: none;
+        font-size: 20px;
+        
+
 }
 
-.container{
-    width: 100%;
-    height: 100vh;
-    background-image: linear-gradient(to left, rgba(8, 85, 81, 0), rgb(0, 247, 255));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        button {
+            width: 50px;
+            height: 50px;
+            font-size: 18px;
+            margin: 2px;
+            border: 1px solid #ccc;
+            border-radius: 50px;
+            cursor: pointer;
+            background-color: #fff5f5;
+            box-shadow: -8px -8px 15px rgb(255, 255, 255, 0.1),  5px 5px 15px rgba(83, 61, 61, 0.2);
+            background: transparent ;
+            color: #3d2d2d;
+        }
 
-.calculator{
-    background: #3a4452;
-    padding: 20px;
-    border-radius: 30px;
-    font-size: 20px;
-}
-.calculator form input{
-    border: 0;
-    outline: 0;
-    width: 60px;
-    height: 60px;
-    border-radius: 10px;
-    box-shadow: -8px -8px 15px rgb(255, 255, 255, 0.1),  5px 5px 15px rgba(83, 61, 61, 0.2);
-    background: transparent ;
-    font-size: 20px;
-    color: aliceblue;
-    cursor: pointer;
-    margin: 10px;
-}
+        button.operator {
+            background-color: #ff8c00;
+            color: #0e0b0b;
+        }
 
-.display{
-    display: flex;
-    justify-content: flex-end;
-    margin: 20px 0;
-}
+        button.equal {
+            background-color: #4caf50;
+            color: #0e0c0c;
+        }
 
-.display input{
-    width: 200px;
-    text-align: right;
-    flex: 1;
-    font-size: 45px;
-    box-shadow: none;
-    font-size: 20px;
+        button.clear {
+            background-color: #ff4444;
+            color: #0e0d0d;
+        }
 
-}
+        button:hover {
+            background-color: #f5eeee;
+        }
 
-form input.equal{
-    width: 145px;
-}
-
-form input.operator{
-    width: 145px;
-}
     </style>
 </head>
 <body>
-    <div class="container"> 
-        <div class="calculator">
-            <form>
-                <div class="display">
-                    <input type="text" name="display">
-                </div>
-                <div>
-                     <input type="button" value="AC" onclick="display.value =''" class="operator">
-                     <input type="button" value="." onclick="display.value +='.'">
-                     <input type="button" value="/" onclick="display.value +='/'">
-                </div>
-                <div>
-                    <input type="button" value="7" onclick="display.value +='7'">
-                    <input type="button" value="8" onclick="display.value +='8'">
-                    <input type="button" value="9" onclick="display.value +='9'">
-                    <input type="button" value="*" onclick="display.value +='*'">
-               </div>
-               <div>
-                <input type="button" value="4" onclick="display.value +='4'">
-                <input type="button" value="5" onclick="display.value +='5'">
-                <input type="button" value="6" onclick="display.value +='6'">
-                <input type="button" value="-" onclick="display.value +='-'">
-           </div>
-           <div>
-            <input type="button" value="1" onclick="display.value +='1'">
-            <input type="button" value="2" onclick="display.value +='2'">
-            <input type="button" value="3" onclick="display.value +='3'">
-            <input type="button" value="+" onclick="display.value +='+'">
-       </div>
-       <div>
-        <input type="button" value="00" onclick="display.value +='00'">
-        <input type="button" value="0" onclick="display.value +='0'">
-        <input type="button" value="=" onclick="display.value = eval(display.value)", class="equal">
-   </div>
-            </form>
-        </div>
+    <div class="calculator">
+        <input type="text" id="display" readonly>
+        <br>
+        <button onclick="appendToDisplay('1')">1</button>
+        <button onclick="appendToDisplay('2')">2</button>
+        <button onclick="appendToDisplay('3')">3</button>
+        <button class="operator" onclick="appendToDisplay('+')">+</button>
+        <br>
+        <button onclick="appendToDisplay('4')">4</button>
+        <button onclick="appendToDisplay('5')">5</button>
+        <button onclick="appendToDisplay('6')">6</button>
+        <button class="operator" onclick="appendToDisplay('-')">-</button>
+        <br>
+        <button onclick="appendToDisplay('7')">7</button>
+        <button onclick="appendToDisplay('8')">8</button>
+        <button onclick="appendToDisplay('9')">9</button>
+        <button class="operator" onclick="appendToDisplay('*')">*</button>
+        <br>
+        <button onclick="appendToDisplay('0')">0</button>
+        <button class="clear" onclick="clearDisplay()">C</button>
+        <button class="equal" onclick="calculateResult()">=</button>
+        <button class="operator" onclick="appendToDisplay('/')">/</button>
     </div>
+
+    <script>
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function calculateResult() {
+            try {
+                document.getElementById('display').value = eval(document.getElementById('display').value);
+            } catch (error) {
+                document.getElementById('display').value = 'Error';
+            }
+        }
+    </script>
 </body>
 </html>
